@@ -4,57 +4,50 @@ from PIL import Image
 st.markdown("""
     <style>
     body {
-        background-color: #121212;
-        color: #EAEAEA;
-        font-family: 'Courier New', monospace;
+        background-color: #F6F5F2;
+        color: #333;
+        font-family: 'Segoe UI', sans-serif;
     }
     h1 {
-        color: #BB86FC;
+        color: #FF6B6B;
         text-align: center;
+        font-weight: bold;
     }
     .stButton>button {
-        background-color: #03DAC6;
-        color: black;
-        border-radius: 8px;
-    }
-    .stButton>button:hover {
-        background-color: #018786;
-        color: white;
+        background-color: #FFE66D;
+        color: #222;
+        border-radius: 20px;
+        font-size: 16px;
+        font-weight: bold;
     }
     </style>
 """, unsafe_allow_html=True)
 
-st.title("🌙 App Multimodal - Modo Oscuro")
-st.header("Diseño elegante y moderno con contrastes brillantes.")
-st.write("Interfaz creada para explorar diferentes modalidades interactivas en un entorno oscuro.")
+st.title("🌼 App Multimodal Minimalista 🌼")
+st.header("Un diseño limpio y equilibrado para una mejor experiencia de usuario.")
+st.write("En este entorno puedes experimentar con distintos componentes de Streamlit.")
 
 image = Image.open('Interfaces Mult2.png')
-st.image(image, caption='Diseño de interfaz', use_column_width=True)
+st.image(image, caption='Interfaz limpia y moderna', use_column_width=True)
 
-texto = st.text_input('Escribe algo 👇', '')
-st.write(f"Texto ingresado: **{texto}**")
+texto = st.text_input('💬 Escribe algo:', '')
+st.write("Tu texto:", texto)
 
-col1, col2 = st.columns([2, 1])
-
+col1, col2 = st.columns(2)
 with col1:
-    st.subheader("💬 Primera columna")
     if st.checkbox('Estoy de acuerdo'):
-        st.success('Genial 💫')
-
+        st.success('Perfecto 🌸')
 with col2:
     modo = st.radio("Modalidad:", ('Visual', 'Auditiva', 'Táctil'))
-    st.info(f"Has seleccionado: {modo}")
+    st.info(f"Modo seleccionado: {modo}")
 
-if st.button('Presiona el botón 🔘'):
-    st.balloons()
-    st.write('🎉 ¡Gracias por interactuar!')
-else:
-    st.warning('Aún no has presionado.')
+if st.button('Presiona 🌼'):
+    st.success('¡Gracias por interactuar!')
 
-in_mod = st.selectbox("Selecciona la modalidad principal:", ("Audio", "Visual", "Háptico"))
-acciones = {"Audio": "Reproducir sonido 🎵", "Visual": "Mostrar video 🎬", "Háptico": "Vibración 🔔"}
-st.write("Acción:", acciones[in_mod])
+opcion = st.selectbox("Selecciona la modalidad principal:", ("Audio", "Visual", "Háptico"))
+st.write("Acción seleccionada:", opcion)
 
 with st.sidebar:
-    st.header("⚙️ Configuración de Modalidad")
-    st.radio("Selecciona:", ("Visual", "Auditiva", "Háptica"))
+    st.header("Configuración 🌈")
+    st.radio("Escoge la modalidad:", ("Visual", "Auditiva", "Háptica"))
+
