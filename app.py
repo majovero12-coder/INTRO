@@ -1,62 +1,60 @@
 import streamlit as st
 from PIL import Image
 
-st.title(" Mi Primera App!!")
+st.markdown("""
+    <style>
+    body {
+        background-color: #121212;
+        color: #EAEAEA;
+        font-family: 'Courier New', monospace;
+    }
+    h1 {
+        color: #BB86FC;
+        text-align: center;
+    }
+    .stButton>button {
+        background-color: #03DAC6;
+        color: black;
+        border-radius: 8px;
+    }
+    .stButton>button:hover {
+        background-color: #018786;
+        color: white;
+    }
+    </style>
+""", unsafe_allow_html=True)
 
-st.header("En este espacio comienzo a desarrollar mis aplicaciones para interfaces multimodales.")
-st.write("Facilmente puedo realizar backend y frontend.")
+st.title("🌙 App Multimodal - Modo Oscuro")
+st.header("Diseño elegante y moderno con contrastes brillantes.")
+st.write("Interfaz creada para explorar diferentes modalidades interactivas en un entorno oscuro.")
+
 image = Image.open('Interfaces Mult2.png')
+st.image(image, caption='Diseño de interfaz', use_column_width=True)
 
-st.image(image, caption='Interfaces multimodales')
+texto = st.text_input('Escribe algo 👇', '')
+st.write(f"Texto ingresado: **{texto}**")
 
-
-texto = st.text_input('Escribe algo', 'Este es mi texto')
-st.write('El texto escrito es', texto)
-
-st.subheader("Ahora usemos 2 Columnas")
-
-col1, col2 = st.columns(2)
+col1, col2 = st.columns([2, 1])
 
 with col1:
-    st.subheader("Esta es la primera columna")
-    st.write("Las interfaces multimodales mejoran la experiencia de usuario")
-    resp = st.checkbox('Estoy de acuerdo')
-    if resp:
-       st.write('Correcto!')
-  
+    st.subheader("💬 Primera columna")
+    if st.checkbox('Estoy de acuerdo'):
+        st.success('Genial 💫')
+
 with col2:
-    st.subheader("Esta es la segunda columna")
-    modo = st.radio("Que Modalidad es la principal en tu interfaz", ('Visual', 'auditiva', 'Táctil'))
-    if modo == 'Visual':
-       st.write('La vista es fundamental para tu interfaz')
-    if modo == 'auditiva':
-       st.write('La audición es fundamental para tu interfaz')
-    if modo == 'Táctil':
-       st.write('El tacto es fundamental para tu interfaz')
-        
-st.subheader("Uso de Botones")
-if st.button('Presiona el botón'):
-    st.write('Gracias por presionar')
+    modo = st.radio("Modalidad:", ('Visual', 'Auditiva', 'Táctil'))
+    st.info(f"Has seleccionado: {modo}")
+
+if st.button('Presiona el botón 🔘'):
+    st.balloons()
+    st.write('🎉 ¡Gracias por interactuar!')
 else:
-    st.write('No has presionado aún')
+    st.warning('Aún no has presionado.')
 
-st.subheader("Selectbox")
-in_mod = st.selectbox(
-    "Selecciona la modalidad",
-    ("Audio", "Visual", "Háptico"),
-)
-if in_mod == "Audio":
-    set_mod = "Reproducir audio"
-elif in_mod == "Visual":
-    set_mod = "Reproducir video"
-elif in_mod == "Háptico":
-    set_mod = "Activar vibración"
-st.write(" La acción es:" , set_mod)
-
+in_mod = st.selectbox("Selecciona la modalidad principal:", ("Audio", "Visual", "Háptico"))
+acciones = {"Audio": "Reproducir sonido 🎵", "Visual": "Mostrar video 🎬", "Háptico": "Vibración 🔔"}
+st.write("Acción:", acciones[in_mod])
 
 with st.sidebar:
-    st.subheader("Configura la modalidad")
-    mod_radio = st.radio(
-        "Escoge la modalidad a usar",
-        ("Visual", "Auditiva","Háptica")
-    )
+    st.header("⚙️ Configuración de Modalidad")
+    st.radio("Selecciona:", ("Visual", "Auditiva", "Háptica"))
